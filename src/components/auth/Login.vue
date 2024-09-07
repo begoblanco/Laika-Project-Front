@@ -18,7 +18,7 @@ import kudryavka from "../../components/images/kudryavka.png";
           <div class="flex-1">
             <div class="text-center">
               <h2 class="text-5xl font-poppins font-bold text-center text-white">
-                Nice to meet you!
+                Laika-Chan is waiting for you!
               </h2>
               <p class="mt-3 text-white">Sign in to access your account</p>
             </div>
@@ -36,7 +36,7 @@ import kudryavka from "../../components/images/kudryavka.png";
                     name="username"
                     id="username"
                     placeholder="Your Username"
-                    class="block w-full px-4 py-2 mt-2 text-white placeholder-gray-200 bg-transparent border border-white rounded-md focus:ring-random-50 focus:outline-random-50 focus:ring focus:ring-opacity-40 caret-random-50"
+                    class="block w-full px-4 py-2 mt-2 text-white placeholder-gray-200 bg-transparent border border-white rounded-md focus:ring-secondary focus:outline-secondary focus:ring focus:ring-opacity-40 "
                   />
                 </div>
                 <div class="mt-6">
@@ -52,7 +52,7 @@ import kudryavka from "../../components/images/kudryavka.png";
                     name="password"
                     id="password"
                     placeholder="Your Password"
-                    class="block w-full px-4 py-2 mt-2 text-white placeholder-gray-200 bg-transparent border border-white rounded-md focus:ring-random-50 focus:outline-random-50 focus:ring focus:ring-opacity-40 caret-random-50"
+                    class="block w-full px-4 py-2 mt-2 text-white placeholder-gray-200 bg-transparent border border-white rounded-md focus:ring-secondary focus:outline-secondary focus:ring focus:ring-opacity-40"
                   />
                 </div>
                 <!-- <div v-if="errorMessage" class="mt-4 text-center text-red-500">
@@ -61,7 +61,7 @@ import kudryavka from "../../components/images/kudryavka.png";
                 <div class="mt-6">
                   <button
                     type="submit"
-                    class="bg-verde-400 font-poppins w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform rounded-md hover:bg-random-50 focus:outline-none focus:bg-random-50 focus:ring focus:ring-random-50 focus:ring-opacity-50"
+                    class="bg-secondary font-poppins w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform rounded-md hover:bg-random-50 focus:outline-none focus:bg-random-50 focus:ring focus:ring-random-50 focus:ring-opacity-50"
                   >
                     Sign in
                   </button>
@@ -69,7 +69,7 @@ import kudryavka from "../../components/images/kudryavka.png";
               </form>
               <p class="mt-6 text-sm text-center text-gray-400">
                 Don&#x27;t have an account yet?
-                <a href="/register" class="text-random-50 focus:outline-none focus:underline hover:underline">
+                <a href="/register" class="text-secondary focus:outline-none focus:underline hover:underline">
                   Sign up
                 </a>
               </p>
