@@ -13,12 +13,6 @@ const router = createRouter({
       meta: { layout: 'empty', requiresAuth: false },
     },
     {
-      path: '/login',
-      name: 'Login',
-      component: Login,
-      meta: { layout: 'empty', requiresAuth: false },
-    },
-    {
       path: '/register',
       name: 'SignUp',
       component: SignUp,

@@ -2,19 +2,20 @@
 import { RouterLink, RouterView } from "vue-router";
 import Clock from '@/components/widget/Clock.vue';
 import Weather from '@/components/widget/Weather.vue';
+import backgroundImage from "@/components/images/bg.png";
 // import Navbar from "@/components/Navbar.vue";
 </script>
 
 <template>
-  <main class="flex flex-col items-center justify-center min-h-screen p-4">
+  <main class="h-full flex flex-col items-center justify-center bg-cover w-full" :style="{ backgroundImage: `url(${backgroundImage})` }">
     <!-- Contenedor para Clock y Weather -->
-    <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8 w-full md:w-auto">
+    <div class="flex flex-col md:flex-row items-center justify-center md:space-y-0 md:space-x-8 md:w-auto">
       <Clock />
       <Weather />
     </div>
     
     <!-- Íconos de navegación -->
-    <div class="flex space-x-8 mt-8">
+    <div class="flex space-x-8 ">
       <RouterLink to="/calendar">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 text-blue-500 hover:text-blue-700">
           <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10m2-5H5a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2H5z" />

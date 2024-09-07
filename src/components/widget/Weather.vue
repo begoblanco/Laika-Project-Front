@@ -1,6 +1,6 @@
 <template>
     <!-- Componente -->
-    <div class=" min-h-screen antialiased flex items-center justify-center p-4">
+    <div class=" w-full h-full flex items-center justify-center p-4">
       <div class="container mx-auto max-w-md md:max-w-lg lg:max-w-xl">
         <div class="bg-white shadow-2xl p-6 rounded-2xl border-2 border-gray-50">
           <div class="flex flex-col">

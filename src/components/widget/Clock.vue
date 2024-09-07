@@ -1,7 +1,109 @@
+<script >
+import { ref, onMounted } from 'vue';
+
+export default {
+  setup() {
+    const classes = {
+      outerGlow: "drop-shadow-[0_0px_4px_rgba(48,128,255,1)]",
+      on: "bg-secondary",
+      off: "bg-gray-900"
+    };
+
+    const orderTable = {
+      "0": [0, 1, 2, 4, 5, 6],
+      "1": [2, 5],
+      "2": [0, 2, 3, 4, 6],
+      "3": [0, 2, 3, 5, 6],
+      "4": [1, 2, 3, 5],
+      "5": [0, 1, 3, 5, 6],
+      "6": [0, 1, 3, 4, 5, 6],
+      "7": [0, 2, 5],
+      "8": [0, 1, 2, 3, 4, 5, 6],
+      "9": [0, 1, 2, 3, 5, 6]
+    };
+
+    let h1Cells, h2Cells, m1Cells, m2Cells;
+
+    const getCells = (parent) => {
+      if (!parent) return null;
+      return [
+        parent.children[0],
+        parent.children[1]?.children[0],
+        parent.children[1]?.children[1],
+        parent.children[2],
+        parent.children[3]?.children[0],
+        parent.children[3]?.children[1],
+        parent.children[4]
+      ];
+    };
+
+    const setHours = (number) => {
+      const digits = to2Digits(number);
+      setDigit(h1Cells.value, digits[0]);
+      setDigit(h2Cells.value, digits[1]);
+    };
+
+    const setMinutes = (number) => {
+      const digits = to2Digits(number);
+      setDigit(m1Cells.value, digits[0]);
+      setDigit(m2Cells.value, digits[1]);
+    };
+
+    const to2Digits = (number) => number.toString().padStart(2, 0);
+
+    const setDigit = (cells, number) => {
+      if (!cells) return;
+      const order = orderTable[number];
+      for (let i = 0; i < cells.length; i++) {
+        turnCell(cells[i], order.includes(i));
+      }
+    };
+
+    const turnCell = (cell, on) => {
+      if (!cell || !cell.children[0]) return;
+      if (on) {
+        cell.children[0].classList.remove(classes.off);
+        cell.children[0].classList.add(classes.on);
+        cell.classList.add(classes.outerGlow);
+      } else {
+        cell.children[0].classList.remove(classes.on);
+        cell.children[0].classList.add(classes.off);
+        cell.classList.remove(classes.outerGlow);
+      }
+    };
+
+    const prev = ref({
+      h: null,
+      m: null
+    });
+
+    onMounted(() => {
+      h1Cells = ref(getCells(document.querySelector('.digit-h-1')));
+      h2Cells = ref(getCells(document.querySelector('.digit-h-2')));
+      m1Cells = ref(getCells(document.querySelector('.digit-m-1')));
+      m2Cells = ref(getCells(document.querySelector('.digit-m-2')));
+
+      setInterval(() => {
+        const date = new Date();
+        if (prev.value.h !== date.getHours()) {
+          prev.value.h = date.getHours();
+          setHours(date.getHours());
+        }
+        if (prev.value.m !== date.getMinutes()) {
+          prev.value.m = date.getMinutes();
+          setMinutes(date.getMinutes());
+        }
+      }, 300);
+    });
+  }
+};
+</script>
+
+
 <template>
 	<div class="flex flex-col justify-center items-center w-full h-full p-4">
 	  <div id="clock"
-		class="bg-[#111] p-3 shadow-[0_6px_10px_-3px_black] flex flex-col justify-center scale-x-50 scale-y-50 sm:scale-x-75 sm:scale-y-75 md:scale-90 lg:scale-100">
+		class="bg-indigo-950 rounded-3xl p-3 shadow-[0_6px_10px_-3px_black] flex flex-col justify-center scale-x-50 scale-y-50 sm:scale-x-75 sm:scale-y-75 md:scale-90 lg:scale-100">
 		<div class="flex flex-row justify-center w-full h-full gap-2">
 		  <!-- Digito hora 1 -->
 		  <div class="digit digit-h-1 flex flex-col justify-around px-5 min-h-full ">
@@ -63,8 +165,8 @@
   
 		  <!-- Separador de puntos -->
 		  <div class="flex flex-col justify-center gap-10 animate-pulse drop-shadow-[0_0px_7px_rgba(89,161,255,1)] grow">
-			<div class="w-6 h-6 bg-[#3080FF] rounded-sm"></div>
-			<div class="w-6 h-6 bg-[#3080FF] rounded-sm"></div>
+			<div class="w-6 h-6 bg-secondary rounded-sm"></div>
+			<div class="w-6 h-6 bg-secondary rounded-sm"></div>
 		  </div>
   
 		  <!-- Digito minuto 1 -->
@@ -163,103 +265,3 @@
   }
 </style>
 
-<script>
-import { ref, onMounted } from 'vue';
-
-export default {
-  setup() {
-    const classes = {
-      outerGlow: "drop-shadow-[0_0px_4px_rgba(48,128,255,1)]",
-      on: "bg-[#3080FF]",
-      off: "bg-gray-900"
-    };
-
-    const orderTable = {
-      "0": [0, 1, 2, 4, 5, 6],
-      "1": [2, 5],
-      "2": [0, 2, 3, 4, 6],
-      "3": [0, 2, 3, 5, 6],
-      "4": [1, 2, 3, 5],
-      "5": [0, 1, 3, 5, 6],
-      "6": [0, 1, 3, 4, 5, 6],
-      "7": [0, 2, 5],
-      "8": [0, 1, 2, 3, 4, 5, 6],
-      "9": [0, 1, 2, 3, 5, 6]
-    };
-
-    let h1Cells, h2Cells, m1Cells, m2Cells;
-
-    const getCells = (parent) => {
-      if (!parent) return null;
-      return [
-        parent.children[0],
-        parent.children[1]?.children[0],
-        parent.children[1]?.children[1],
-        parent.children[2],
-        parent.children[3]?.children[0],
-        parent.children[3]?.children[1],
-        parent.children[4]
-      ];
-    };
-
-    const setHours = (number) => {
-      const digits = to2Digits(number);
-      setDigit(h1Cells.value, digits[0]);
-      setDigit(h2Cells.value, digits[1]);
-    };
-
-    const setMinutes = (number) => {
-      const digits = to2Digits(number);
-      setDigit(m1Cells.value, digits[0]);
-      setDigit(m2Cells.value, digits[1]);
-    };
-
-    const to2Digits = (number) => number.toString().padStart(2, 0);
-
-    const setDigit = (cells, number) => {
-      if (!cells) return;
-      const order = orderTable[number];
-      for (let i = 0; i < cells.length; i++) {
-        turnCell(cells[i], order.includes(i));
-      }
-    };
-
-    const turnCell = (cell, on) => {
-      if (!cell || !cell.children[0]) return;
-      if (on) {
-        cell.children[0].classList.remove(classes.off);
-        cell.children[0].classList.add(classes.on);
-        cell.classList.add(classes.outerGlow);
-      } else {
-        cell.children[0].classList.remove(classes.on);
-        cell.children[0].classList.add(classes.off);
-        cell.classList.remove(classes.outerGlow);
-      }
-    };
-
-    const prev = ref({
-      h: null,
-      m: null
-    });
-
-    onMounted(() => {
-      h1Cells = ref(getCells(document.querySelector('.digit-h-1')));
-      h2Cells = ref(getCells(document.querySelector('.digit-h-2')));
-      m1Cells = ref(getCells(document.querySelector('.digit-m-1')));
-      m2Cells = ref(getCells(document.querySelector('.digit-m-2')));
-
-      setInterval(() => {
-        const date = new Date();
-        if (prev.value.h !== date.getHours()) {
-          prev.value.h = date.getHours();
-          setHours(date.getHours());
-        }
-        if (prev.value.m !== date.getMinutes()) {
-          prev.value.m = date.getMinutes();
-          setMinutes(date.getMinutes());
-        }
-      }, 300);
-    });
-  }
-};
-</script>

@@ -85,7 +85,7 @@ import kudryavka from "../../components/images/kudryavka.png";
               </form>
               <p class="mt-6 text-sm text-center text-gray-400">
                 Already have an account?
-                <a href="/login" class="text-secondary focus:outline-none focus:underline hover:underline">
+                <a href="/" class="text-secondary focus:outline-none focus:underline hover:underline">
                   Sign in
                 </a>
               </p>
