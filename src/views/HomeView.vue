@@ -24,17 +24,20 @@ import Navbar from "@/components/Navbar.vue";
     </div>
 
     <!-- Íconos de navegación -->
-    <div class="flex mt-10 space-x-10">
-      <RouterLink to="/calendar">
+    <div class="flex mt-20 space-x-20">
+      <RouterLink to="/calendar" class="flex flex-col items-center">
         <img :src="calendarIcon" alt="Calendar Icon" class="w-10 h-10" />
+        <div class = "mt-2 text-purple-200">Calendar</div>
       </RouterLink>
 
-      <RouterLink to="/notes">
+      <RouterLink to="/notes" class="flex flex-col items-center">
         <img :src="noteIcon" alt="Notes Icon" class="w-10 h-10" />
+        <div class = "mt-2 text-purple-200">Notes</div>
       </RouterLink>
 
-      <RouterLink to="/chat">
+      <RouterLink to="/chat" class="flex flex-col items-center">
         <img :src="chatIcon" alt="Chat Icon" class="w-10 h-10" />
+        <div class = "mt-2 text-purple-200">Chat</div>
       </RouterLink>
     </div>
   </main>
