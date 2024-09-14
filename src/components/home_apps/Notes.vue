@@ -1,7 +1,6 @@
 <template>
     <!-- component -->
 <div class="mx-auto container py-20 px-6">
-<!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
 
             <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 <div class="rounded">

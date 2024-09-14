@@ -37,23 +37,15 @@ onBeforeUnmount(() => {
   <!-- component -->
   <div class="flex h-screen overflow-hidden">
     <!-- Sidebar -->
-    <div class="w-1/4 hidden lg:block" :style="{ backgroundImage: `url(${bgImage})` }">
+    <div
+      class="w-1/4 hidden lg:block"
+      :style="{ backgroundImage: `url(${bgImage})` }"
+    >
       <!-- Sidebar Header -->
-      <header
-        class="p-4 flex justify-between items-center bg-primary text-white"
-      >
-        <h1 class="text-2xl font-semibold">Chat with me!</h1>
-        
-      </header>
 
       <!-- Laika -->
-      <div
-        class="overflow-y-auto h-screen pb-20 flex flex-col justify-end"
-      >
-        <img
-          class="object-cover w-full h-full"
-          src="../images/CGKD10ah.png"
-        />
+      <div class="overflow-y-auto h-screen flex flex-col justify-end">
+        <img class="object-cover w-full h-full" src="../images/CGKD10ah.png" />
       </div>
     </div>
 
@@ -76,8 +68,8 @@ onBeforeUnmount(() => {
               />
             </svg>
           </button> -->
-          <!-- Menu Dropdown -->
-          <!-- <div
+        <!-- Menu Dropdown -->
+        <!-- <div
             id="menuDropdown"
             class="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg hidden"
           >
@@ -96,8 +88,8 @@ onBeforeUnmount(() => {
                   >Option 2</a
                 >
               </li> -->
-              <!-- Add more menu options here -->
-            <!-- </ul>
+        <!-- Add more menu options here -->
+        <!-- </ul>
           </div>
         </div> -->
       </header>
@@ -115,7 +107,7 @@ onBeforeUnmount(() => {
               class="w-8 h-8 rounded-full"
             />
           </div>
-          <div class="flex max-w-96 bg-white rounded-lg p-3 gap-3">
+          <div class="flex max-w-96 bg-violet-100 rounded-lg p-3 gap-3">
             <p class="text-gray-700">Hey, how's it going?</p>
           </div>
         </div>
@@ -123,11 +115,9 @@ onBeforeUnmount(() => {
         <!-- Outgoing Message -->
         <div class="flex justify-end mb-4 cursor-pointer">
           <div
-            class="flex max-w-96 bg-indigo-500 text-white rounded-lg p-3 gap-3"
+            class="flex max-w-96 bg-violet-400 text-white rounded-lg p-3 gap-3"
           >
-            <p>
-              Hi Laika! I'm good. How about you?
-            </p>
+            <p>Hi Laika! I'm good. How about you?</p>
           </div>
           <div
             class="w-9 h-9 rounded-full flex items-center justify-center ml-2"
@@ -149,9 +139,9 @@ onBeforeUnmount(() => {
           <input
             type="text"
             placeholder="Type a message..."
-            class="w-full p-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500"
+            class="w-full p-2 rounded-md border border-gray-400 focus:outline-none focus:border-violet-500"
           />
-          <button class="bg-indigo-500 text-white px-4 py-2 rounded-md ml-2">
+          <button class="bg-violet-500 text-white px-4 py-2 rounded-md ml-2">
             Send
           </button>
         </div>
@@ -159,7 +149,3 @@ onBeforeUnmount(() => {
     </div>
   </div>
 </template>
-
-
-
-

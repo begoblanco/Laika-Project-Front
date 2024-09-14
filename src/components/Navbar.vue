@@ -11,9 +11,9 @@ const handleLogout = () => {
 </script>
 
 <template>
-  <nav class="bg-primary dark:bg-primary fixed w-full z-20 top-0 start-0">
+  <nav class="bg-primary dark:bg-primary sticky w-full z-20 top-0 start-0">
     <div
-      class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+      class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 "
     >
       <RouterLink
         to="/home"

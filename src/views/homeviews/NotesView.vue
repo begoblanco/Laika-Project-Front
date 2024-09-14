@@ -1,11 +1,15 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-import Notes from '@/components/home_apps/Notes.vue';
+import Notes from "@/components/home_apps/Notes.vue";
 import Navbar from "@/components/Navbar.vue";
+import backgroundImage from "@/components/images/bg.png";
 </script>
 
 <template>
-  <main>
+  <main
+    class=" bg-cover w-full"
+    :style="{ backgroundImage: `url(${backgroundImage})` }"
+  >
     <Navbar />
     <Notes />
   </main>
