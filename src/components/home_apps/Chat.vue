@@ -1,14 +1,68 @@
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from "vue";
+import bgImage from "@/components/images/bg.png";
+
+// Estado del menú visible/invisible
+const isMenuVisible = ref(false);
+
+// Función para alternar la visibilidad del menú
+const toggleMenu = () => {
+  isMenuVisible.value = !isMenuVisible.value;
+};
+
+// Función para cerrar el menú si se hace clic fuera de él
+const handleClickOutside = (event) => {
+  const menuButton = document.querySelector("button");
+  const menuDropdown = document.querySelector("[v-if='isMenuVisible']");
+
+  if (
+    !menuButton.contains(event.target) &&
+    !menuDropdown?.contains(event.target)
+  ) {
+    isMenuVisible.value = false;
+  }
+};
+
+// Añadir y remover el evento al montar y desmontar el componente
+onMounted(() => {
+  document.addEventListener("click", handleClickOutside);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener("click", handleClickOutside);
+});
+</script>
+
 <template>
   <!-- component -->
   <div class="flex h-screen overflow-hidden">
     <!-- Sidebar -->
-    <div class="w-1/4 bg-white border-r border-gray-300">
+    <div class="w-1/4 hidden lg:block" :style="{ backgroundImage: `url(${bgImage})` }">
       <!-- Sidebar Header -->
       <header
-        class="p-4 border-b border-gray-300 flex justify-between items-center bg-indigo-600 text-white"
+        class="p-4 flex justify-between items-center bg-primary text-white"
       >
         <h1 class="text-2xl font-semibold">Chat with me!</h1>
-        <div class="relative">
+        
+      </header>
+
+      <!-- Laika -->
+      <div
+        class="overflow-y-auto h-screen pb-20 flex flex-col justify-end"
+      >
+        <img
+          class="object-cover w-full h-full"
+          src="../images/CGKD10ah.png"
+        />
+      </div>
+    </div>
+
+    <!-- Main Chat Area -->
+    <div class="flex-1 bg-dark">
+      <!-- Chat Header -->
+      <header class="bg-secondary p-4 text-white">
+        <h1 class="text-2xl font-semibold">Laika-Chan</h1>
+        <!-- <div class="relative">
           <button id="menuButton" class="focus:outline-none">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -21,9 +75,9 @@
                 d="M2 10a2 2 0 012-2h12a2 2 0 012 2 2 2 0 01-2 2H4a2 2 0 01-2-2z"
               />
             </svg>
-          </button>
+          </button> -->
           <!-- Menu Dropdown -->
-          <div
+          <!-- <div
             id="menuDropdown"
             class="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg hidden"
           >
@@ -41,29 +95,11 @@
                   class="block px-4 py-2 text-gray-800 hover:text-gray-400"
                   >Option 2</a
                 >
-              </li>
+              </li> -->
               <!-- Add more menu options here -->
-            </ul>
+            <!-- </ul>
           </div>
-        </div>
-      </header>
-
-      <!-- Laika -->
-      <div
-        class="overflow-y-auto h-screen pb-20 flex flex-col justify-end"
-      >
-        <img
-          class="object-cover w-full h-full"
-          src="../images/CGKD10ah.png"
-        />
-      </div>
-    </div>
-
-    <!-- Main Chat Area -->
-    <div class="flex-1">
-      <!-- Chat Header -->
-      <header class="bg-white p-4 text-gray-700">
-        <h1 class="text-2xl font-semibold">Laika</h1>
+        </div> -->
       </header>
 
       <!-- Chat Messages -->
@@ -107,7 +143,7 @@
 
       <!-- Chat Input -->
       <footer
-        class="bg-white border-t border-gray-300 p-4 absolute bottom-0 w-3/4"
+        class="bg-dark border-t border-secondary p-4 absolute bottom-0 w-full lg:w-3/4"
       >
         <div class="flex items-center">
           <input
@@ -124,40 +160,6 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
 
-// Estado del menú visible/invisible
-const isMenuVisible = ref(false);
 
-// Función para alternar la visibilidad del menú
-const toggleMenu = () => {
-  isMenuVisible.value = !isMenuVisible.value;
-};
 
-// Función para cerrar el menú si se hace clic fuera de él
-const handleClickOutside = (event) => {
-  const menuButton = document.querySelector("button");
-  const menuDropdown = document.querySelector("[v-if='isMenuVisible']");
-
-  if (
-    !menuButton.contains(event.target) &&
-    !menuDropdown?.contains(event.target)
-  ) {
-    isMenuVisible.value = false;
-  }
-};
-
-// Añadir y remover el evento al montar y desmontar el componente
-onMounted(() => {
-  document.addEventListener("click", handleClickOutside);
-});
-
-onBeforeUnmount(() => {
-  document.removeEventListener("click", handleClickOutside);
-});
-</script>
-
-<style scoped>
-/* Puedes agregar tus estilos aquí si es necesario */
-</style>

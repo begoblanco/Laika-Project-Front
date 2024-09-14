@@ -1,11 +1,12 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-import Chat from '@/components/home/Chat.vue';
+import Chat from '@/components/home_apps/Chat.vue';
+import Navbar from "@/components/Navbar.vue";
 </script>
 
 <template>
   <main>
-    <RouterLink to = "/">home</RouterLink>
+    <Navbar />
     <Chat />
   </main>
 </template>

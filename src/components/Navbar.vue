@@ -1,196 +1,38 @@
-<script setup>
-import { Dialog, DialogPanel, TransitionChild, TransitionRoot, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
-import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
-import { RouterLink, useRouter } from 'vue-router'
-import { useAuthStore } from '../stores/auth';
-import { loginChange } from '../stores/loginChange';
-import IconLogo from './icons/IconLogo.vue';
-import Login from './Login.vue';
-import Register from './Register.vue';
-import { ref } from 'vue';
-
-const router = useRouter()
-const store = useAuthStore()
-const mobileMenuOpen = ref(false)
-
-const modificarLogin = () => {
-    if (loginChange.login == false)
-        loginChange.setLogin(true)
-    else
-        loginChange.setLogin(false)
-};
-
-const modificarRegister = () => {
-    if (loginChange.register == false)
-        loginChange.setRegister(true)
-    else
-        loginChange.setRegister(false)
-};
-
-function logout() {
-
-    store.user.isAuthenticated = false
-    store.user.id = ""
-    store.user.username = ""
-    store.user.role = ""
-
-    localStorage.clear()
-    loginChange.setLogin(false)
-    loginChange.setRegister(false)
-    mobileMenuOpen.value = false
-
-    const redirectPath = '/home'
-    router.push(redirectPath)
-}
-
-</script>
 <template>
-    <header class="bg-white">
-        <nav class="flex items-center justify-between p-2 lg:px-8 shadow-lg" aria-label="Global">
-            <div class="flex lg:flex-1 items-center">
-                
-            </div>
-            <div class="flex lg:hidden">
-                <button type="button"
-                    class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-                    @click="mobileMenuOpen = true">
-                    <span class="sr-only">Open main menu</span>
-                    <Bars3Icon class="h-6 w-6" aria-hidden="true" />
-                </button>
-            </div>
-            <div class="hidden lg:flex lg:gap-x-12">
-                <RouterLink v-if="store.user.isAuthenticated" to="/"
-                    class="text-sm font-semibold leading-6 text-gray-900">
-                    Home</RouterLink>
-                
-            </div>
-            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                <a href="#" v-if="!store.user.isAuthenticated" @click="modificarRegister"
-                    class="text-sm font-semibold leading-6 text-gray-900 mr-4">
-                    Register
-                </a>
-                <a href="#" v-if="!store.user.isAuthenticated" @click="modificarLogin"
-                    class="text-sm font-semibold leading-6 text-gray-900">
-                    Log in
-                </a>
-                <!-- Profile dropdown -->
-                <Menu v-if="store.user.isAuthenticated" as="div" class="relative ml-3">
-                    <div>
-                        <MenuButton
-                            class="relative flex rounded-full bg-verdigris text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-verdigris">
-                            <span class="absolute -inset-1.5" />
-                            <span class="sr-only">Open user menu</span>
-                            <img class="h-8 w-8 rounded-full"
-                                src="../assets/img/mauricio.jpeg"
-                                alt="" />
-                        </MenuButton>
-                    </div>
-                    <transition enter-active-class="transition ease-out duration-100"
-                        enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100"
-                        leave-active-class="transition ease-in duration-75"
-                        leave-from-class="transform opacity-100 scale-100"
-                        leave-to-class="transform opacity-0 scale-95">
-                        <MenuItems
-                            class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            
-                            <MenuItem v-slot="{ active }">
-                            <a href="#" @click="logout()"
-                                :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">
-                                Logout
-                            </a>
-                            </MenuItem>
-                        </MenuItems>
-                    </transition>
-                </Menu>
-            </div>
-        </nav>
-        <Dialog class="lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">
-            <div class="fixed inset-0 z-10" />
-            <div
-                class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-                <div class="flex items-center justify-between">
-                    <RouterLink to="/">
-                        <span class="sr-only"></span>
-                        
-                    </RouterLink>
-                    <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700" @click="mobileMenuOpen = false">
-                        <span class="sr-only">Close menu</span>
-                        <XMarkIcon class="h-6 w-6" aria-hidden="true" />
-                    </button>
-                </div>
-                <div class="mt-6 flow-root">
-                    <div class="-my-6 divide-y divide-gray-500/10">
-                        <div class="space-y-2 py-6">
-                            <RouterLink v-if="store.user.isAuthenticated" to="/" @click="mobileMenuOpen = false"
-                                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                                Home</RouterLink>
-                            
-                        </div>
-                        <div v-if="!store.user.isAuthenticated" class="py-6">
-                            <a href="#" @click="modificarRegister"
-                                class="text-sm font-semibold leading-6 text-gray-900">
-                                Register
-                            </a>
-                        </div>
-                        <div class="py-6">
-                            <a href="#" v-if="store.user.isAuthenticated" @click="logout"
-                                class="text-sm font-semibold leading-6 text-gray-900">
-                                Logout
-                            </a>
-                            <a href="#" v-if="!store.user.isAuthenticated" @click="modificarLogin"
-                                class="text-sm font-semibold leading-6 text-gray-900">
-                                Log in
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </Dialog>
-    </header>
-    <TransitionRoot v-if="!store.user.isAuthenticated" as="login" :show="loginChange.login">
-        <Dialog class="relative z-10" @close="modificarLogin">
-            <TransitionChild as="login" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100"
-                leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
-                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-            </TransitionChild>
+    
 
-            <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-                <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center">
-                    <TransitionChild as="login" enter="ease-out duration-300"
-                        enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                        enter-to="opacity-100 translate-y-0 sm:scale-100" leave="ease-in duration-200"
-                        leave-from="opacity-100 translate-y-0 sm:scale-100"
-                        leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                        <DialogPanel
-                            class="relative transform overflow-hidden rounded-lg bg-white shadow-xl transition-all ">
-                            <Login />
-                        </DialogPanel>
-                    </TransitionChild>
-                </div>
-            </div>
-        </Dialog>
-    </TransitionRoot>
-    <TransitionRoot v-if="!store.user.isAuthenticated" as="register" :show="loginChange.register">
-        <Dialog class="relative z-10" @close="modificarRegister">
-            <TransitionChild as="register" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100"
-                leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
-                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-            </TransitionChild>
+<nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+  <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+      <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo">
+      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+  </a>
+  <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+      <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get started</button>
+      <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+    </button>
+  </div>
+  <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+    <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+      <li>
+        <a href="#" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Home</a>
+      </li>
+      <li>
+        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
+      </li>
+      <li>
+        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
+      </li>
+      <li>
+        <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+      </li>
+    </ul>
+  </div>
+  </div>
+</nav>
 
-            <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-                <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center">
-                    <TransitionChild as="register" enter="ease-out duration-300"
-                        enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                        enter-to="opacity-100 translate-y-0 sm:scale-100" leave="ease-in duration-200"
-                        leave-from="opacity-100 translate-y-0 sm:scale-100"
-                        leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                        <DialogPanel
-                            class="relative transform overflow-hidden rounded-lg bg-white shadow-xl transition-all ">
-                            <Register />
-                        </DialogPanel>
-                    </TransitionChild>
-                </div>
-            </div>
-        </Dialog>
-    </TransitionRoot>
-</template> 
+</template>
