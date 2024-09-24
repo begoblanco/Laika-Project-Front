@@ -1,8 +1,8 @@
 import { ref, reactive } from "vue";
 import { defineStore } from "pinia";
-import AuthService from "../core/apis/spring/auth/AuthService";
-import RegisterService from "@/core/apis/spring/auth/RegisterService";
-import Credentials from "@/core/models/Credentials";
+import AuthService from "../core/AuthService";
+import RegisterService from "../core/RegisterService";
+import Credentials from "../core/credentials";
 
 
 export const useAuthStore = defineStore('auth', () => {

@@ -15,7 +15,7 @@ import Laika from "@/components/Laika.vue";
     class="h-screen bg-cover w-full"
     :style="{ backgroundImage: `url(${backgroundImage})` }"
   >
-  <div class="flex flex-column h-screen overflow-hidden">
+  <div class="lg:flex lg:flex-column">
   <!-- Sidebar con Laika -->
   <div class="w-1/4 hidden lg:block ">
       <div class="overflow-y-auto h-screen flex flex-col items-center justify-end border-r-8 border-primary">
@@ -23,7 +23,7 @@ import Laika from "@/components/Laika.vue";
       </div>
     </div>
   
-    <div class="flex flex-col items-center ml-1 lg:w-3/4">
+    <div class="flex flex-col items-center ml-1 lg:w-3/4 r">
       <!-- Contenedor para clock -->
       <div
         class="mt-40 flex flex-col md:flex-row items-center justify-center md:space-y-0 md:space-x-8 md:w-auto"
