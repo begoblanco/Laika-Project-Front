@@ -1,7 +1,5 @@
 import { defineStore } from 'pinia';
-import axios from 'axios';
-
-const BASE_URL = import.meta.env.VITE_API_ENDPOINT + '/notes';
+import api from '@/services/api';
 
 export const useNoteStore = defineStore('notes', {
   state: () => ({
@@ -12,11 +10,11 @@ export const useNoteStore = defineStore('notes', {
   }),
 
   actions: {
-    async fetchNotesByUserId(userId) {
+    async fetchNotes() {
       this.isLoading = true;
       this.error = null;
       try {
-        const response = await axios.get(`${BASE_URL}/user/${userId}`);
+        const response = await api.get('/notes');
         this.notes = response.data;
       } catch (error) {
         this.handleError(error);
@@ -25,24 +23,11 @@ export const useNoteStore = defineStore('notes', {
       }
     },
 
-    async fetchNoteById(noteId) {
+    async createNote(noteData) {
       this.isLoading = true;
       this.error = null;
       try {
-        const response = await axios.get(`${BASE_URL}/${noteId}`);
-        this.note = response.data;
-      } catch (error) {
-        this.handleError(error);
-      } finally {
-        this.isLoading = false;
-      }
-    },
-
-    async createNoteForUser(userId, noteData) {
-      this.isLoading = true;
-      this.error = null;
-      try {
-        const response = await axios.post(`${BASE_URL}/user/${userId}`, noteData);
+        const response = await api.post("/notes", noteData)
         this.notes.push(response.data);
       } catch (error) {
         this.handleError(error);
@@ -51,12 +36,12 @@ export const useNoteStore = defineStore('notes', {
       }
     },
 
-    async updateNote(noteId, noteData) {
+    async updateNote(noteData) {
       this.isLoading = true;
       this.error = null;
       try {
-        const response = await axios.put(`${BASE_URL}/${noteId}`, noteData);
-        const index = this.notes.findIndex(note => note.id === noteId);
+        const response = await api.put(`/notes/${noteData.id}`, noteData);
+        const index = this.notes.findIndex(note => note.id === noteData.id);
         if (index !== -1) {
           this.notes[index] = response.data;
         }
@@ -71,7 +56,7 @@ export const useNoteStore = defineStore('notes', {
       this.isLoading = true;
       this.error = null;
       try {
-        await axios.delete(`${BASE_URL}/${noteId}`);
+        await api.delete(`/notes/${noteId}`);
         this.notes = this.notes.filter(note => note.id !== noteId);
       } catch (error) {
         this.handleError(error);
