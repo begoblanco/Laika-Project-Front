@@ -47,13 +47,13 @@ onMounted(() => {
 
     <!-- Main Chat Area -->
     <div class="flex-1 bg-dark flex flex-col h-screen">
-      <!-- Chat Header -->
-      <!-- <header class="bg-secondary p-4 text-white ">
+      <!-- Chat Header
+      <header class="bg-secondary p-4 text-white sticky top-0 z-10">
         <h1 class="text-2xl font-semibold">Laika-Chan</h1>
       </header> -->
 
       <!-- Chat Messages -->
-      <div ref="chatContainer" class="flex-1 overflow-y-auto p-4">
+      <div ref="chatContainer" class="flex-1 overflow-y-auto p-4 ">
         <ChatBubble v-for="(message, i) in chatStore.messages" :message="message" :id="i" :key="i" />
       </div>
 
