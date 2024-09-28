@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar.vue";
 </script>
 
 <template>
-  <main>
+  <main class="h-screen">
     <Navbar />
     <Chat />
   </main>

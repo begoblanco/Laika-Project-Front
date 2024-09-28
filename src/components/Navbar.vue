@@ -12,7 +12,7 @@ const handleLogout = () => {
 </script>
 
 <template>
-  <nav class="bg-primary dark:bg-primary sticky w-full z-20 top-0 start-0">
+  <nav class="bg-primary sticky dark:bg-primary w-full z-20 top-0 start-0">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 ">
       <RouterLink :to="{ name: 'home' }" class="flex items-center space-x-3 rtl:space-x-reverse">
         <img src="/src/components/icons/stars.svg" class="h-8" />
