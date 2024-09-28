@@ -33,17 +33,17 @@ import Laika from "@/components/Laika.vue";
 
       <!-- Íconos de navegación -->
       <div class="flex mt-40 space-x-10 lg:space-x-20">
-        <RouterLink to="/calendar" class="flex flex-col items-center">
+        <RouterLink :to="{name: 'calendar'}" class="flex flex-col items-center">
           <img :src="calendarIcon" alt="Calendar Icon" class="w-20 h-20" />
           <div class="mt-2 text-purple-200">Calendar</div>
         </RouterLink>
 
-        <RouterLink to="/notes" class="flex flex-col items-center">
+        <RouterLink :to="{name: 'notes'}" class="flex flex-col items-center">
           <img :src="noteIcon" alt="Notes Icon" class="w-20 h-20" />
           <div class="mt-2 text-purple-200">Notes</div>
         </RouterLink>
 
-        <RouterLink to="/chat" class="flex flex-col items-center">
+        <RouterLink :to="{name: 'chat'}" class="flex flex-col items-center">
           <img :src="chatIcon" alt="Chat Icon" class="w-20 h-20" />
           <div class="mt-2 text-purple-200">Chat</div>
         </RouterLink>
