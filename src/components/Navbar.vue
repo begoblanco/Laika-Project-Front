@@ -6,8 +6,8 @@ const router = useRouter();
 const authStore = useAuthStore();
 
 const handleLogout = () => {
-  userStore.logout();
-  window.location.href = "/";
+  authStore.logout();
+  router.push("/");
 };
 </script>
 
