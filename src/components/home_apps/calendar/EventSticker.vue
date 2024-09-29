@@ -12,23 +12,28 @@ const isEditModalOpen = ref(false);
 
 const toggleEditModal = () => isEditModalOpen.value = !isEditModalOpen.value;
 
-const saveEvent = (event) => {
-    toggleEditModal();
-    eventStore.updateEvent(event);
-}
 
-const deleteEvent = (event) => {
-    toggleEditModal();
-    eventStore.deleteEvent(event.id);
-}
+const truncateText = (text, maxLength) => {
+    if (!text) return '';
+    return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+};
 
+
+const formatTime = (dateString) => {
+    const date = new Date(dateString);
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
+};
 </script>
 
 <template>
     <EditEventModal :event="event" @save="saveEvent" @delete="deleteEvent" @close="toggleEditModal"
         v-if="isEditModalOpen" />
+    
     <div @click="toggleEditModal" class="text-xs bg-purple-100 mx-2">
-        <div>{{ event.title }}</div>
-        <div>{{ event.start_date }}</div>
+        
+        <div>{{ truncateText(event.title, 20) }}</div>
+        <div>{{ formatTime(event.start_date) }}</div>
     </div>
 </template>
