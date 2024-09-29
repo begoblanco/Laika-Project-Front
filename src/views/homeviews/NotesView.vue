@@ -6,11 +6,11 @@ import backgroundImage from "@/components/images/bg.png";
 </script>
 
 <template>
+  <Navbar />
   <main
     class=" h-screen bg-cover w-full"
     :style="{ backgroundImage: `url(${backgroundImage})` }"
   >
-    <Navbar />
     <Notes />
   </main>
 </template>
