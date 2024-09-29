@@ -1,7 +1,5 @@
 <script setup>
 import backgroundImage from "@/components/images/bg.png";
-import EventCard from "./EventCard.vue";
-import EventSticker from "./EventSticker.vue";
 import CalendarCard from "./CalendarCard.vue";
 import UpcomingEvents from "./UpcomingEvents.vue";
 </script>
