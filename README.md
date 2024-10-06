@@ -2,7 +2,8 @@
 
 "H-Hey! Nice to meet you! I'm Laika and my dream is to make your life easier and help you anytime.... Stop! Don't looke at me like that, it's embarrasing!......... Anyways, I'll be always by your side no matter what, but not because I like you or anything! I guess really want to make you smile forever..."
 
-Take a look at your virtual helper Laika! She is always ready to chat, help you getting organized and of course she is super excited to meet you! 
+Laika is a virtual assistant that, through the use of Large Language Models (LLM), is capable of providing answers to the user based on a database.
+You can create notes, events on a calendar and chat with her, she is always ready to help you!
 
 ## Recommended IDE Setup
 
@@ -37,5 +38,13 @@ npm run test:unit
 ```
 ### Tools
 - Vue 3 Composition API
+
+- Pinia
+
+- Vitest
+
+- Axios
+
+- JavaScript
 
 - Tailwind CSS
