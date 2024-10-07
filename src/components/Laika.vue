@@ -18,7 +18,8 @@ const emotions = {
   thinking: neutral,
   sad: sad,
   very_happy: very_happy,
-  laughing: very_happy
+  laughing: very_happy,
+  excited: very_happy
 }
 
 const randEmotion = () => {
