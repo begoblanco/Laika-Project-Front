@@ -82,7 +82,7 @@ All rights belongs to their original creators.
 
 ## Thank you all!
 
-Developed by Bego Blanco.
+Developed by [Bego Blanco](https://github.com/begoblanco)
 
 More updates in the future!
 
