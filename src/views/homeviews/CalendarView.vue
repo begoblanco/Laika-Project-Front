@@ -7,7 +7,7 @@ import backgroundImage from '@/components/images/bg.png';
 
 <template>
   <Navbar />
-  <main class="h-screen bg-cover w-full"
+  <main class="h-screen w-full"
   :style="{ backgroundImage: `url(${backgroundImage})` }">
     <Calendar />
   </main>
