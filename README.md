@@ -73,6 +73,12 @@ npm run test:unit
 
 ![laika calendar](https://github.com/user-attachments/assets/3876ea0f-a5b8-4407-a733-cdc17855bd6c)
 
+## Links
+
+[Back-end Java Laika](https://github.com/begoblanco/Laika-Project-Back)
+
+[Back-end Python Laika](https://github.com/begoblanco/Laika-Project-AI)
+
 ## Credits
 This is a non-profitable project!
 
